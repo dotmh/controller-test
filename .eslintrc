@@ -1,0 +1,3 @@
+{
+    "extends": "@dotmh/eslint-config-ts"
+}

@@ -2,6 +2,7 @@
   "name": "gamepad-test",
   "private": true,
   "version": "0.0.0",
+  "prettier": "@dotmh/prettier-config",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -12,9 +13,12 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@dotmh/eslint-config-ts": "^0.1.0",
+    "@dotmh/prettier-config": "^0.1.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
+    "sass": "^1.52.1",
     "typescript": "^4.6.3",
     "vite": "^2.9.9"
   }

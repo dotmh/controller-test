@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "reactstrap": "^9.0.2"
   },
   "devDependencies": {
     "@dotmh/eslint-config-ts": "^0.1.0",

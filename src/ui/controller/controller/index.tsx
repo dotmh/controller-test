@@ -10,16 +10,15 @@ interface ControllerProps {
 }
 
 export const Controller = (props: ControllerProps) => {
-  const [timestamp, setTimestamp] = useState<number>(0);
   const [buttons, setButtons] = useState<readonly GamepadButton[] | null>(null);
   const [mapping, setMapping] = useState<ControllerMapping | null | undefined>(
     null
   );
   const [id, setId] = useState<string>('');
+  const [axis, setAxis] = useState<readonly number[]>([]);
 
   useEffect(() => {
     const interval: number = pollGamePad(props.gamepad, (gamepad: Gamepad) => {
-      setTimestamp(gamepad.timestamp ?? 0);
       setButtons(gamepad.buttons ?? null);
       setMapping(
         mappings.has(gamepad.mapping)
@@ -27,6 +26,7 @@ export const Controller = (props: ControllerProps) => {
           : mappings.get('standard')
       );
       setId(gamepad.id);
+      setAxis(gamepad.axes);
     });
 
     return () => clearInterval(interval);
@@ -36,9 +36,17 @@ export const Controller = (props: ControllerProps) => {
     <>
       {id}
       {buttons?.map((button, index) => (
-        <div>
+        <div key={index}>
           {mapping && mapping.has(index) ? mapping.get(index) : 'unknown'} -{' '}
           {button.value} : {button.pressed ? 'Pressed' : ''}
+        </div>
+      ))}
+      {axis?.map((axis, index) => (
+        <div key={index + 100}>
+          {mapping && mapping.has(index + 100)
+            ? mapping.get(index + 100)
+            : 'unknown'}{' '}
+          : {axis}
         </div>
       ))}
     </>

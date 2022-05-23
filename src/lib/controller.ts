@@ -24,9 +24,17 @@ export enum Triggers {
 export enum Controls {
   SELECT = 'SELECT',
   START = 'START',
+  HOME = 'HOME',
 }
 
-export type ContollerInputs = Buttons | DPad | Triggers | Controls;
+export enum Axis {
+  LX = 'LEFT X',
+  LY = 'LEFT Y',
+  RX = 'RIGHT X',
+  RY = 'RIGHT Y',
+}
+
+export type ContollerInputs = Buttons | DPad | Triggers | Controls | Axis;
 export type ControllerMapping = Map<number, ContollerInputs>;
 export type Mapping = Map<GamepadMappingType, ControllerMapping>;
 
@@ -48,6 +56,12 @@ STANDARD_MAPPING.set(12, DPad.UP);
 STANDARD_MAPPING.set(13, DPad.DOWN);
 STANDARD_MAPPING.set(14, DPad.LEFT);
 STANDARD_MAPPING.set(15, DPad.RIGHT);
+STANDARD_MAPPING.set(16, Controls.HOME);
+
+STANDARD_MAPPING.set(100, Axis.LX);
+STANDARD_MAPPING.set(101, Axis.LY);
+STANDARD_MAPPING.set(102, Axis.RX);
+STANDARD_MAPPING.set(103, Axis.RY);
 
 export const mappings: Mapping = new Map();
 

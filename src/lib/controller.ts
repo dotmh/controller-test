@@ -1,3 +1,5 @@
+export const AXIS_OFFSET = 100;
+
 export enum Buttons {
   A = 'A',
   B = 'B',
@@ -66,6 +68,10 @@ STANDARD_MAPPING.set(103, Axis.RY);
 export const mappings: Mapping = new Map();
 
 mappings.set('standard', STANDARD_MAPPING);
+
+export const asAxis = (axisId: number): number => AXIS_OFFSET + axisId;
+
+export const axisInPercent = (axis: number): number => Math.round(axis * 100);
 
 export const canUseGamepadApi = (): boolean => 'getGamepads' in navigator;
 

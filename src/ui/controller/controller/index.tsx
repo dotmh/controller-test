@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
+  asAxis,
+  axisInPercent,
   ControllerMapping,
   mappings,
   pollGamePad,
@@ -42,11 +44,11 @@ export const Controller = (props: ControllerProps) => {
         </div>
       ))}
       {axis?.map((axis, index) => (
-        <div key={index + 100}>
-          {mapping && mapping.has(index + 100)
-            ? mapping.get(index + 100)
+        <div key={asAxis(index)}>
+          {mapping && mapping.has(asAxis(index))
+            ? mapping.get(asAxis(index))
             : 'unknown'}{' '}
-          : {axis}
+          : {axisInPercent(axis)}%
         </div>
       ))}
     </>

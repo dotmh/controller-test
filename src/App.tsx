@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {Container} from 'reactstrap';
 import './App.scss';
 import {ControllerCanIUse} from './ui/controller/canUse';
+import {Controller} from './ui/controller/controller';
 import {ControllerSelector} from './ui/controller/selector';
 
 function App() {
@@ -15,6 +16,11 @@ function App() {
           <ControllerSelector
             onSelectGamepad={setSelectedGamePad}
           ></ControllerSelector>
+          {selectedGamePad ? (
+            <Controller gamepad={selectedGamePad}></Controller>
+          ) : (
+            <></>
+          )}
         </ControllerCanIUse>
       </Container>
     </div>

@@ -60,7 +60,11 @@ export const ControllerSelector = ({
               >
                 <option value={NONE}>No Controller Selected</option>
                 {gamePads.map((gamePad) => {
-                  return <option value={gamePad.id}>{gamePad.id}</option>;
+                  return (
+                    <option value={gamePad.id} key={gamePad.id}>
+                      {gamePad.id}
+                    </option>
+                  );
                 })}
               </Input>
             </FormGroup>

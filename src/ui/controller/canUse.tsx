@@ -2,7 +2,11 @@ import React from 'react';
 import {Alert} from 'reactstrap';
 import {canUseGamepadApi, canUseGamepadApiEvents} from '../../lib/controller';
 
-export const ControllerCanIUse = () => {
+interface ControllerCanIUseProps {
+  children: React.ReactNode;
+}
+
+export const ControllerCanIUse = (props: ControllerCanIUseProps) => {
   const testResults: JSX.Element[] = [];
 
   if (!canUseGamepadApi()) {
@@ -23,5 +27,5 @@ export const ControllerCanIUse = () => {
     );
   }
 
-  return <>{testResults}</>;
+  return <>{testResults.length > 0 ? testResults : props.children}</>;
 };

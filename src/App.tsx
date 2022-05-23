@@ -11,10 +11,11 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <ControllerCanIUse></ControllerCanIUse>
-        <ControllerSelector
-          onSelectGamepad={setSelectedGamePad}
-        ></ControllerSelector>
+        <ControllerCanIUse>
+          <ControllerSelector
+            onSelectGamepad={setSelectedGamePad}
+          ></ControllerSelector>
+        </ControllerCanIUse>
       </Container>
     </div>
   );

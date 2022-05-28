@@ -36,7 +36,8 @@ export enum Axis {
   RY = 'RIGHT Y',
 }
 
-export type ContollerInputs = Buttons | DPad | Triggers | Controls | Axis;
+export type ControllerButtons = Buttons | DPad | Triggers | Controls;
+export type ContollerInputs = ControllerButtons | Axis;
 export type ControllerMapping = Map<number, ContollerInputs>;
 export type Mapping = Map<GamepadMappingType, ControllerMapping>;
 

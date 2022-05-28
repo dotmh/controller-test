@@ -2,10 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {
   asAxis,
   axisInPercent,
+  ControllerButtons,
   ControllerMapping,
   mappings,
   pollGamePad,
 } from '../../../lib/controller';
+import {ControllerButton} from './controllerButton';
 
 interface ControllerProps {
   gamepad: Gamepad;
@@ -21,14 +23,14 @@ export const Controller = (props: ControllerProps) => {
 
   useEffect(() => {
     const interval: number = pollGamePad(props.gamepad, (gamepad: Gamepad) => {
-      setButtons(gamepad.buttons ?? null);
+      setButtons([...gamepad.buttons] ?? null);
       setMapping(
         mappings.has(gamepad.mapping)
           ? mappings.get(gamepad.mapping)
           : mappings.get('standard')
       );
       setId(gamepad.id);
-      setAxis(gamepad.axes);
+      setAxis([...gamepad.axes]);
     });
 
     return () => clearInterval(interval);
@@ -37,12 +39,20 @@ export const Controller = (props: ControllerProps) => {
   return (
     <>
       {id}
-      {buttons?.map((button, index) => (
-        <div key={index}>
-          {mapping && mapping.has(index) ? mapping.get(index) : 'unknown'} -{' '}
-          {button.value} : {button.pressed ? 'Pressed' : ''}
-        </div>
-      ))}
+      {buttons?.map((button, index) => {
+        return (
+          <ControllerButton
+            key={index}
+            button={
+              mapping && mapping.has(index)
+                ? (mapping.get(index) as ControllerButtons)
+                : null
+            }
+            pressed={button.pressed}
+            value={button.value}
+          ></ControllerButton>
+        );
+      })}
       {axis?.map((axis, index) => (
         <div key={asAxis(index)}>
           {mapping && mapping.has(asAxis(index))

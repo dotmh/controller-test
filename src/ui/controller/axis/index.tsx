@@ -19,6 +19,7 @@ export interface AxisGraphPointProps {
 }
 
 type AxisGraphProps = CanvasProps & AxisGraphPointProps;
+type AxisGraphInputProps = Partial<CanvasProps> & AxisGraphPointProps;
 
 export interface AxisGraphPoint {
   x: number;
@@ -88,7 +89,7 @@ const draw = (
   drawAxisPoint(context, axisGraphProps);
 };
 
-export const AxisGraph = (props: AxisGraphProps): JSX.Element => {
+export const AxisGraph = (props: AxisGraphInputProps): JSX.Element => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -99,7 +100,7 @@ export const AxisGraph = (props: AxisGraphProps): JSX.Element => {
         throw new Error('Unable to get context');
       }
 
-      draw(context, {...DefaultCanvasProps, ...props});
+      draw(context, {...DefaultCanvasProps, ...props} as AxisGraphProps);
     }
   }, [props.xPercentage, props.yPercentage]);
 

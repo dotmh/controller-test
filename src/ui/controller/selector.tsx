@@ -59,26 +59,24 @@ export const ControllerSelector = ({
               {gamePads.length}
             </Badge>
           </CardTitle>
-          <CardText>
-            <FormGroup>
-              <Label for="gamepadSelector">Select A Game Controller</Label>
-              <Input
-                id="gamepadSelector"
-                type="select"
-                name="gamepadSelector"
-                onChange={onChange}
-              >
-                <option value={NONE}>No Controller Selected</option>
-                {gamePads.map((gamePad) => {
-                  return (
-                    <option value={gamePad.id} key={gamePad.id}>
-                      {gamePad.id}
-                    </option>
-                  );
-                })}
-              </Input>
-            </FormGroup>
-          </CardText>
+          <FormGroup>
+            <Label for="gamepadSelector">Select A Game Controller</Label>
+            <Input
+              id="gamepadSelector"
+              type="select"
+              name="gamepadSelector"
+              onChange={onChange}
+            >
+              <option value={NONE}>No Controller Selected</option>
+              {gamePads.map((gamePad) => {
+                return (
+                  <option value={gamePad.id} key={gamePad.id}>
+                    {gamePad.id}
+                  </option>
+                );
+              })}
+            </Input>
+          </FormGroup>
         </CardBody>
       </Card>
     );

@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {Container, Navbar, NavbarBrand} from 'reactstrap';
 import './App.scss';
 import {ControllerCanIUse} from './ui/controller/canUse';
-import {Controller} from './ui/controller/controller';
+import {Controller} from './ui/controller/controller/Controller';
 import {ControllerSelector} from './ui/controller/selector';
 
 function App() {

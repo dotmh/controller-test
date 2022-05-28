@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useState} from 'react';
-import {Container} from 'reactstrap';
+import {Container, Navbar, NavbarBrand} from 'reactstrap';
 import './App.scss';
 import {ControllerCanIUse} from './ui/controller/canUse';
 import {Controller} from './ui/controller/controller';
@@ -11,6 +11,9 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar color="dark" dark>
+        <NavbarBrand href="/">DotMH Games - Controller Checker</NavbarBrand>
+      </Navbar>
       <Container>
         <ControllerCanIUse>
           <ControllerSelector

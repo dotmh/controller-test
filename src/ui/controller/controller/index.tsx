@@ -39,7 +39,7 @@ export const Controller = (props: ControllerProps) => {
 
   return (
     <>
-      {id}
+      <h1>Controller : {id}</h1>
       {buttons?.map((button, index) => {
         return (
           <ControllerButton

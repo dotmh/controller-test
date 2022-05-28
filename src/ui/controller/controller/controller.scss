@@ -8,4 +8,12 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .controller-layout svg {
+    width: 100%;
+    height: auto;
+    path {
+      stroke: black;
+    }
+  }
 }

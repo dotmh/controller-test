@@ -1,0 +1,10 @@
+.button {
+  .pressedStrength {
+    width: 10px;
+    height: 10px;
+  }
+
+  &.pressed .pressedStrength {
+    background-color: red;
+  }
+}

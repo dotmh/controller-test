@@ -1,3 +1,5 @@
+import './controller.scss';
+
 import React, {useEffect, useState} from 'react';
 import {
   Axis,
@@ -38,33 +40,38 @@ export const Controller = (props: ControllerProps) => {
   }, []);
 
   return (
-    <>
+    <div className="controller">
       <h1>Controller : {id}</h1>
-      {buttons?.map((button, index) => {
-        return (
-          <ControllerButton
-            key={index}
-            button={
-              mapping && mapping.has(index)
-                ? (mapping.get(index) as ControllerButtons)
-                : null
-            }
-            pressed={button.pressed}
-            value={button.value}
-          ></ControllerButton>
-        );
-      })}
-      <ControllerAxis
-        label="left"
-        x={axis[axisId(Axis.LX)]}
-        y={axis[axisId(Axis.LY)]}
-      ></ControllerAxis>
+      <div className="controller-buttons">
+        {buttons?.map((button, index) => {
+          return (
+            <ControllerButton
+              key={index}
+              button={
+                mapping && mapping.has(index)
+                  ? (mapping.get(index) as ControllerButtons)
+                  : null
+              }
+              pressed={button.pressed}
+              value={button.value}
+            ></ControllerButton>
+          );
+        })}
+      </div>
 
-      <ControllerAxis
-        label="right"
-        x={axis[axisId(Axis.RX)]}
-        y={axis[axisId(Axis.RY)]}
-      ></ControllerAxis>
-    </>
+      <div className="controller-axises">
+        <ControllerAxis
+          label="left"
+          x={axis[axisId(Axis.LX)]}
+          y={axis[axisId(Axis.LY)]}
+        ></ControllerAxis>
+
+        <ControllerAxis
+          label="right"
+          x={axis[axisId(Axis.RX)]}
+          y={axis[axisId(Axis.RY)]}
+        ></ControllerAxis>
+      </div>
+    </div>
   );
 };

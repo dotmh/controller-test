@@ -1,3 +1,5 @@
+import './controllerButton.scss';
+
 import React from 'react';
 import {ControllerButtons} from '../../../lib/controller';
 
@@ -10,8 +12,15 @@ export interface ControllerButtonProps {
 
 export const ControllerButton = (props: ControllerButtonProps) => {
   return (
-    <div className={props.pressed ? 'pressed' : 'notPressed'}>
-      {props.button ?? 'Unknown'} {props.value}
+    <div
+      className={[
+        'button',
+        props.pressed ? 'pressed' : 'notPressed',
+        `button-${props.button?.toLowerCase() ?? 'Unknown'}`,
+      ].join(' ')}
+    >
+      <div className="pressedStrength" style={{opacity: props.value}}></div>
+      {props.button ?? 'Unknown'}
     </div>
   );
 };

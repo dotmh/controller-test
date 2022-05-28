@@ -11,6 +11,7 @@ export interface CanvasProps {
   background: CSSColor;
   lineColor: CSSColor;
   cursorColor: CSSColor;
+  directionLines: boolean;
 }
 
 export interface AxisGraphPointProps {
@@ -36,6 +37,7 @@ const DefaultCanvasProps: CanvasProps = {
   background: 'black',
   lineColor: 'rgba(204, 204, 204, 0.5)',
   cursorColor: 'limegreen',
+  directionLines: true,
 };
 
 const axisPostivePercentage = (axisInPercent: number): number => {
@@ -72,12 +74,25 @@ const drawAxisPoint = (
     xPercentage: x,
     yPercentage: y,
     cursorColor,
+    directionLines,
   }: AxisGraphProps
 ) => {
   context.fillStyle = cursorColor;
   const xAxis = (width / 100) * axisPostivePercentage(x) - pointWidth / 2;
   const yAxis = (height / 100) * axisPostivePercentage(y) - pointHeight / 2;
   context.fillRect(xAxis, yAxis, pointWidth, pointHeight);
+
+  const xStart = width / 2;
+  const yStart = height / 2;
+
+  if (directionLines) {
+    context.lineWidth = pointWidth / 2;
+    context.strokeStyle = cursorColor;
+    context.beginPath();
+    context.moveTo(xStart, yStart);
+    context.lineTo(xAxis, yAxis);
+    context.stroke();
+  }
 };
 
 const draw = (

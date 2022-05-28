@@ -11,7 +11,12 @@ import {
   Label,
 } from 'reactstrap';
 import {NONE} from '../../lib/constants';
-import {hasGamepads, listGamepads, watchForGamepad} from '../../lib/controller';
+import {
+  hasGamepads,
+  listGamepads,
+  watchForGamepad,
+  watchForGamepadDisconnect,
+} from '../../lib/controller';
 
 export interface ControllerSelecterProps {
   onSelectGamepad: (gamePad: Gamepad | null) => void;
@@ -27,6 +32,11 @@ export const ControllerSelector = ({
 
     watchForGamepad(() => {
       setGamePads(listGamepads());
+    });
+
+    watchForGamepadDisconnect(() => {
+      onSelectGamepad(null);
+      setGamePads([]);
     });
   }, []);
 

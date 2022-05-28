@@ -1,4 +1,6 @@
 export const AXIS_OFFSET = 100;
+export const GAMEPAD_CONNECTED = 'gamepadconnected';
+export const GAMEPAD_DISCONNECTED = 'gamepaddisconnected';
 
 export enum Buttons {
   A = 'A',
@@ -108,9 +110,19 @@ export const listGamepads = (): Gamepad[] => {
   }
 };
 
-export const watchForGamepad = (eventCallback: () => void): void => {
+export type EventCallback = () => void;
+
+export const watchForGamepad = (eventCallback: EventCallback): void => {
   if (canUseGamepadApi()) {
-    window.addEventListener('gamepadconnected', eventCallback);
+    window.addEventListener(GAMEPAD_CONNECTED, eventCallback);
+  }
+};
+
+export const watchForGamepadDisconnect = (
+  eventCallback: EventCallback
+): void => {
+  if (canUseGamepadApi()) {
+    window.addEventListener(GAMEPAD_DISCONNECTED, eventCallback);
   }
 };
 

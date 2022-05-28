@@ -55,11 +55,13 @@ export const Controller = (props: ControllerProps) => {
         );
       })}
       <ControllerAxis
+        label="left"
         x={axis[axisId(Axis.LX)]}
         y={axis[axisId(Axis.LY)]}
       ></ControllerAxis>
 
       <ControllerAxis
+        label="right"
         x={axis[axisId(Axis.RX)]}
         y={axis[axisId(Axis.RY)]}
       ></ControllerAxis>

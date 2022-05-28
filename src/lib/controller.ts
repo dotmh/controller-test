@@ -2,6 +2,8 @@ export const AXIS_OFFSET = 100;
 export const GAMEPAD_CONNECTED = 'gamepadconnected';
 export const GAMEPAD_DISCONNECTED = 'gamepaddisconnected';
 
+export const GAMEPAD_ID_SEPERATOR = '-';
+
 export enum Buttons {
   A = 'A',
   B = 'B',
@@ -87,6 +89,21 @@ export const axisId = (axis: Axis): number => {
 };
 
 export const axisInPercent = (axis: number): number => Math.round(axis * 100);
+
+export interface GamepadId {
+  vender: string;
+  product: string;
+  name: string;
+}
+
+export const gamepadId = (idString: string): GamepadId => {
+  const [vender, product, name] = idString.split(GAMEPAD_ID_SEPERATOR);
+  return {
+    vender,
+    product,
+    name,
+  };
+};
 
 export const canUseGamepadApi = (): boolean => 'getGamepads' in navigator;
 

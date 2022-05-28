@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import {NONE} from '../../lib/constants';
 import {
+  gamepadId,
   hasGamepads,
   listGamepads,
   watchForGamepad,
@@ -70,7 +71,7 @@ export const ControllerSelector = ({
               {gamePads.map((gamePad) => {
                 return (
                   <option value={gamePad.id} key={gamePad.id}>
-                    {gamePad.id}
+                    {gamepadId(gamePad.id).name}
                   </option>
                 );
               })}

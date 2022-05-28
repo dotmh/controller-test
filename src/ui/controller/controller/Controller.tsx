@@ -6,6 +6,7 @@ import {
   axisId,
   ControllerButtons,
   ControllerMapping,
+  gamepadId,
   mappings,
   pollGamePad,
 } from '../../../lib/controller';
@@ -41,7 +42,7 @@ export const Controller = (props: ControllerProps) => {
 
   return (
     <div className="controller">
-      <h1>Controller : {id}</h1>
+      <h1>Controller : {gamepadId(id).name}</h1>
       <div className="controller-buttons">
         {buttons?.map((button, index) => {
           return (

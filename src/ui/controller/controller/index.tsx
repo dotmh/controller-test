@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {
-  asAxis,
-  axisInPercent,
+  Axis,
+  axisId,
   ControllerButtons,
   ControllerMapping,
   mappings,
   pollGamePad,
 } from '../../../lib/controller';
+import {ControllerAxis} from './controllerAxis';
 import {ControllerButton} from './controllerButton';
 
 interface ControllerProps {
@@ -53,14 +54,15 @@ export const Controller = (props: ControllerProps) => {
           ></ControllerButton>
         );
       })}
-      {axis?.map((axis, index) => (
-        <div key={asAxis(index)}>
-          {mapping && mapping.has(asAxis(index))
-            ? mapping.get(asAxis(index))
-            : 'unknown'}{' '}
-          : {axisInPercent(axis)}%
-        </div>
-      ))}
+      <ControllerAxis
+        x={axis[axisId(Axis.LX)]}
+        y={axis[axisId(Axis.LY)]}
+      ></ControllerAxis>
+
+      <ControllerAxis
+        x={axis[axisId(Axis.RX)]}
+        y={axis[axisId(Axis.RY)]}
+      ></ControllerAxis>
     </>
   );
 };

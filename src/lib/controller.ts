@@ -72,6 +72,18 @@ mappings.set('standard', STANDARD_MAPPING);
 
 export const asAxis = (axisId: number): number => AXIS_OFFSET + axisId;
 
+export const axisId = (axis: Axis): number => {
+  const data = [...STANDARD_MAPPING.entries()].find(
+    ([, value]) => value === axis
+  );
+  if (data) {
+    const [id] = data;
+    return id - AXIS_OFFSET;
+  }
+
+  return 0;
+};
+
 export const axisInPercent = (axis: number): number => Math.round(axis * 100);
 
 export const canUseGamepadApi = (): boolean => 'getGamepads' in navigator;

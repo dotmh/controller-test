@@ -6,6 +6,7 @@ import {
   axisId,
   ControllerButtons,
   ControllerMapping,
+  ControllerTypes,
   gamepadId,
   gamepadType,
   mappings,
@@ -26,6 +27,9 @@ export const Controller = (props: ControllerProps) => {
   );
   const [id, setId] = useState<string>('');
   const [axis, setAxis] = useState<readonly number[]>([]);
+  const [useGamepadType, setUseGamepadType] = useState<ControllerTypes>(
+    ControllerTypes.UNKNOWN
+  );
 
   useEffect(() => {
     const interval: number = pollGamePad(props.gamepad, (gamepad: Gamepad) => {
@@ -37,6 +41,7 @@ export const Controller = (props: ControllerProps) => {
       );
       setId(gamepad.id);
       setAxis([...gamepad.axes]);
+      setUseGamepadType(gamepadType(gamepad.id));
     });
 
     return () => clearInterval(interval);
@@ -45,20 +50,21 @@ export const Controller = (props: ControllerProps) => {
   return (
     <div className="controller">
       <h1>Controller : {gamepadId(id).name}</h1>
-      <div className="controller-layout">
-        <>{controllerImage(gamepadType(id), 'BACKGROUND_TOP')}</>
+      <div className={`controller-layout ${useGamepadType.toLowerCase()}`}>
+        <>{controllerImage(useGamepadType, 'BACKGROUND_TOP')}</>
         <div className="controller-buttons">
           {buttons?.map((button, index) => {
+            const controllerButton: ControllerButtons | null =
+              mapping && mapping.has(index)
+                ? (mapping.get(index) as ControllerButtons)
+                : null;
             return (
               <ControllerButton
                 key={index}
-                button={
-                  mapping && mapping.has(index)
-                    ? (mapping.get(index) as ControllerButtons)
-                    : null
-                }
+                button={controllerButton}
                 pressed={button.pressed}
                 value={button.value}
+                image={controllerImage(useGamepadType, controllerButton)}
               ></ControllerButton>
             );
           })}

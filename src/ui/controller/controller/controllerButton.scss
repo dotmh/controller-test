@@ -1,4 +1,6 @@
 .button {
+  width: 5%;
+
   .pressedStrength {
     width: 10px;
     height: 10px;
@@ -6,5 +8,12 @@
 
   &.pressed .pressedStrength {
     background-color: red;
+  }
+
+  &.pressed svg {
+    circle,
+    path {
+      fill: red;
+    }
   }
 }

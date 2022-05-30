@@ -1,4 +1,4 @@
-import {Fragment} from 'react';
+import {ExoticComponent, Fragment} from 'react';
 import {ContollerInputs, ControllerTypes} from '../../../../lib/controller';
 import {SVG} from '../../../../lib/types';
 import {dualshock4ImageMap} from './dualshock4';
@@ -13,10 +13,17 @@ export const controllerImageMap: ControllerImageMap = new Map();
 
 controllerImageMap.set(ControllerTypes.DUALSHOCK4, dualshock4ImageMap);
 
-export const controllerImage = (type: ControllerTypes, key: ImageKey) => {
+export const controllerImage = (
+  type: ControllerTypes,
+  key: ImageKey | null
+): React.ReactElement | ExoticComponent => {
+  if (!key) {
+    return Fragment;
+  }
   const svg: SVG | null = controllerImageMap.get(type)?.get(key) ?? null;
   if (svg) {
-    return svg({});
+    const svgElement = svg({});
+    return svgElement ? svgElement : Fragment;
   } else {
     return Fragment;
   }

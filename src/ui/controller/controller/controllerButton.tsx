@@ -8,6 +8,7 @@ export interface ControllerButtonProps {
   pressed: boolean;
   value: number;
   key: number;
+  image: React.ReactElement | React.ExoticComponent;
 }
 
 export const ControllerButton = (props: ControllerButtonProps) => {
@@ -21,6 +22,8 @@ export const ControllerButton = (props: ControllerButtonProps) => {
     >
       <div className="pressedStrength" style={{opacity: props.value}}></div>
       {props.button ?? 'Unknown'}
+
+      <>{props.image}</>
     </div>
   );
 };

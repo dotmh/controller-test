@@ -90,7 +90,7 @@ const drawAxisPoint = (
     context.strokeStyle = cursorColor;
     context.beginPath();
     context.moveTo(xStart, yStart);
-    context.lineTo(xAxis, yAxis);
+    context.lineTo(xAxis + pointWidth / 2, yAxis + pointHeight / 2);
     context.stroke();
   }
 };

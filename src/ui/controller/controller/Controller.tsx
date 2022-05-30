@@ -12,7 +12,7 @@ import {
 } from '../../../lib/controller';
 import {ControllerAxis} from './controllerAxis';
 import {ControllerButton} from './controllerButton';
-import {Outline} from './images/top';
+import {Outline} from './images/dualshock4/top';
 
 interface ControllerProps {
   gamepad: Gamepad;

@@ -4,6 +4,13 @@ export const GAMEPAD_DISCONNECTED = 'gamepaddisconnected';
 
 export const GAMEPAD_ID_SEPERATOR = '-';
 
+export enum ControllerTypes {
+  DUALSHOCK4 = 'DUALSHOCK4',
+  UNKNOWN = 'UNKNOWN',
+}
+
+export type IdMapping = Map<string, ControllerTypes>;
+
 export enum Buttons {
   A = 'A',
   B = 'B',
@@ -74,6 +81,10 @@ export const mappings: Mapping = new Map();
 
 mappings.set('standard', STANDARD_MAPPING);
 
+export const idMapping: IdMapping = new Map();
+
+idMapping.set('54c-5c4', ControllerTypes.DUALSHOCK4);
+
 export const asAxis = (axisId: number): number => AXIS_OFFSET + axisId;
 
 export const axisId = (axis: Axis): number => {
@@ -103,6 +114,11 @@ export const gamepadId = (idString: string): GamepadId => {
     product,
     name,
   };
+};
+
+export const gamepadType = (idString: string): ControllerTypes => {
+  const {vender, product} = gamepadId(idString);
+  return idMapping.get(`${vender}-${product}`) ?? ControllerTypes.UNKNOWN;
 };
 
 export const canUseGamepadApi = (): boolean => 'getGamepads' in navigator;

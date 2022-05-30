@@ -7,12 +7,13 @@ import {
   ControllerButtons,
   ControllerMapping,
   gamepadId,
+  gamepadType,
   mappings,
   pollGamePad,
 } from '../../../lib/controller';
 import {ControllerAxis} from './controllerAxis';
 import {ControllerButton} from './controllerButton';
-import {Outline} from './images/dualshock4/top';
+import {controllerImage} from './images';
 
 interface ControllerProps {
   gamepad: Gamepad;
@@ -45,7 +46,7 @@ export const Controller = (props: ControllerProps) => {
     <div className="controller">
       <h1>Controller : {gamepadId(id).name}</h1>
       <div className="controller-layout">
-        <Outline></Outline>
+        <>{controllerImage(gamepadType(id), 'BACKGROUND_TOP')}</>
         <div className="controller-buttons">
           {buttons?.map((button, index) => {
             return (

@@ -21,7 +21,7 @@ export const ControllerButton = (props: ControllerButtonProps) => {
       ].join(' ')}
     >
       <div className="pressedStrength" style={{opacity: props.value}}></div>
-      {props.button ?? 'Unknown'}
+      <span className="label">{props.button ?? 'Unknown'}</span>
 
       <>{props.image}</>
     </div>

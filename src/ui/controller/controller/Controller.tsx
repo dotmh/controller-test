@@ -51,7 +51,7 @@ export const Controller = (props: ControllerProps) => {
     <div className="controller">
       <h1>Controller : {gamepadId(id).name}</h1>
       <div className={`controller-layout ${useGamepadType.toLowerCase()}`}>
-        <>{controllerImage(useGamepadType, 'BACKGROUND_TOP')}</>
+        <>{controllerImage(useGamepadType, 'ICON')}</>
         <div className="controller-buttons">
           {buttons?.map((button, index) => {
             const controllerButton: ControllerButtons | null =

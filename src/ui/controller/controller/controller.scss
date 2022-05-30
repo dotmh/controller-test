@@ -12,5 +12,13 @@
     rect {
       stroke: black;
     }
+
+    &#icon {
+      path,
+      circle,
+      rect {
+        stroke: green;
+      }
+    }
   }
 }

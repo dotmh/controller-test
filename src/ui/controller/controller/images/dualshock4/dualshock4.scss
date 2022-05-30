@@ -1,0 +1,64 @@
+.dualshock4 {
+  position: relative;
+
+  .controller-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+
+    .label {
+      display: none;
+    }
+
+    .pressedStrength {
+      display: none;
+    }
+  }
+
+  .button-a,
+  .button-b,
+  .button-x,
+  .button-y {
+    width: 6.5%;
+  }
+
+  .button-a {
+    right: 8%;
+    top: 19%;
+  }
+
+  .button-y {
+    top: 19%;
+    right: 23%;
+  }
+
+  .button-b {
+    right: 15.5%;
+    top: 28.5%;
+  }
+
+  .button-x {
+    right: 15.5%;
+    top: 10%;
+  }
+
+  .button-l3,
+  .button-r3 {
+    width: 12%;
+  }
+
+  .button-r3 {
+    right: 28%;
+    bottom: 52%;
+  }
+}

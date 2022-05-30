@@ -5,7 +5,7 @@ import {ContollerInputs, ControllerTypes} from '../../../../lib/controller';
 import {SVG} from '../../../../lib/types';
 import {dualshock4ImageMap} from './dualshock4';
 
-export type ImageBackgrounds = 'BACKGROUND_TOP' | 'BACKGROUND_ALT';
+export type ImageBackgrounds = 'BACKGROUND_TOP' | 'BACKGROUND_ALT' | 'ICON';
 
 export type ImageKey = ContollerInputs | ImageBackgrounds;
 export type ImageMap = Map<ImageKey, SVG>;

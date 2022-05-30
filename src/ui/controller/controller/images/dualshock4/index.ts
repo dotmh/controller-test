@@ -5,6 +5,7 @@ import {
   Circle,
   Down,
   Home,
+  Icon,
   Left,
   LeftStick,
   Option,
@@ -37,3 +38,4 @@ dualshock4ImageMap.set(DPad.LEFT, Left);
 dualshock4ImageMap.set(DPad.RIGHT, Right);
 
 dualshock4ImageMap.set('BACKGROUND_TOP', Background);
+dualshock4ImageMap.set('ICON', Icon);

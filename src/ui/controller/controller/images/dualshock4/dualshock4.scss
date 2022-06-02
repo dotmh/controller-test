@@ -33,38 +33,38 @@
   }
 
   .button-a {
-    right: 8%;
-    top: 19%;
+    right: 7.8%;
+    top: 21.9%;
   }
 
   .button-y {
-    top: 19%;
-    right: 23%;
+    top: 21.9%;
+    right: 22.7%;
   }
 
   .button-b {
-    right: 15.5%;
-    top: 28.5%;
+    right: 15.2%;
+    top: 34.5%;
   }
 
   .button-x {
-    right: 15.5%;
-    top: 10%;
+    right: 15.2%;
+    top: 9.8%;
   }
 
   .button-l3,
   .button-r3 {
     width: 12%;
+    bottom: 38.5%;
   }
 
   .button-r3 {
     right: 28%;
-    bottom: 52.5%;
   }
 
   .button-l3 {
     left: 27.5%;
-    bottom: 52.5%;
+    bottom: 38.5%;
   }
 
   .button-up,
@@ -78,43 +78,45 @@
   }
 
   .button-up {
-    top: 12.83%;
+    top: 13%;
     left: 15.5%;
   }
 
   .button-down {
     left: 15.5%;
-    top: 24.8%;
+    top: 29.8%;
+  }
+
+  .button-left,
+  .button-right {
+    top: 22%;
   }
 
   .button-left {
     left: 10%;
-    top: 19.7%;
   }
 
   .button-right {
     left: 19.7%;
-    top: 19.7%;
   }
 
   .button-home {
     width: 5%;
-    bottom: 56%;
-    left: 47.5%;
+    bottom: 44.5%;
+    left: 47.4%;
   }
 
   .button-select,
   .button-start {
-    width: 3.5%;
+    width: 3.4%;
+    top: 6%;
   }
 
   .button-select {
     left: 27.55%;
-    top: 7%;
   }
 
   .button-start {
     right: 27.55%;
-    top: 7%;
   }
 }

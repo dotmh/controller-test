@@ -51,7 +51,7 @@ export const Controller = (props: ControllerProps) => {
     <div className="controller">
       <h1>Controller : {gamepadId(id).name}</h1>
       <div className={`controller-layout ${useGamepadType.toLowerCase()}`}>
-        <>{controllerImage(useGamepadType, 'ICON')}</>
+        <>{controllerImage(useGamepadType, 'BACKGROUND_TOP')}</>
         <div className="controller-buttons">
           {buttons?.map((button, index) => {
             const controllerButton: ControllerButtons | null =
@@ -69,20 +69,19 @@ export const Controller = (props: ControllerProps) => {
             );
           })}
         </div>
+      </div>
+      <div className="controller-axises">
+        <ControllerAxis
+          label="left"
+          x={axis[axisId(Axis.LX)]}
+          y={axis[axisId(Axis.LY)]}
+        ></ControllerAxis>
 
-        <div className="controller-axises">
-          <ControllerAxis
-            label="left"
-            x={axis[axisId(Axis.LX)]}
-            y={axis[axisId(Axis.LY)]}
-          ></ControllerAxis>
-
-          <ControllerAxis
-            label="right"
-            x={axis[axisId(Axis.RX)]}
-            y={axis[axisId(Axis.RY)]}
-          ></ControllerAxis>
-        </div>
+        <ControllerAxis
+          label="right"
+          x={axis[axisId(Axis.RX)]}
+          y={axis[axisId(Axis.RY)]}
+        ></ControllerAxis>
       </div>
     </div>
   );

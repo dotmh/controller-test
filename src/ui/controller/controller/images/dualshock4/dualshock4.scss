@@ -66,4 +66,55 @@
     left: 27.5%;
     bottom: 52.5%;
   }
+
+  .button-up,
+  .button-down {
+    width: 6%;
+  }
+
+  .button-left,
+  .button-right {
+    width: 7.3%;
+  }
+
+  .button-up {
+    top: 12.83%;
+    left: 15.5%;
+  }
+
+  .button-down {
+    left: 15.5%;
+    top: 24.8%;
+  }
+
+  .button-left {
+    left: 10%;
+    top: 19.7%;
+  }
+
+  .button-right {
+    left: 19.7%;
+    top: 19.7%;
+  }
+
+  .button-home {
+    width: 5%;
+    bottom: 56%;
+    left: 47.5%;
+  }
+
+  .button-select,
+  .button-start {
+    width: 3.5%;
+  }
+
+  .button-select {
+    left: 27.55%;
+    top: 7%;
+  }
+
+  .button-start {
+    right: 27.55%;
+    top: 7%;
+  }
 }

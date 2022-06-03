@@ -1,3 +1,5 @@
+@import '../../../scss/header';
+
 .button {
   .pressedStrength {
     width: 10px;
@@ -5,14 +7,28 @@
   }
 
   &.pressed .pressedStrength {
-    background-color: red;
+    background-color: $pressed-light;
   }
 
   &.pressed svg {
     circle,
     rect,
     path {
-      fill: red;
+      fill: $pressed-light;
+    }
+  }
+}
+
+.dark .button {
+  &.pressed .pressedStrength {
+    background-color: $pressed-dark;
+  }
+
+  &.pressed svg {
+    circle,
+    rect,
+    path {
+      fill: $pressed-dark;
     }
   }
 }

@@ -117,7 +117,13 @@ export const AxisGraph = (props: AxisGraphInputProps): JSX.Element => {
 
       draw(context, {...DefaultCanvasProps, ...props} as AxisGraphProps);
     }
-  }, [props.xPercentage, props.yPercentage]);
+  }, [
+    props.xPercentage,
+    props.yPercentage,
+    props.background,
+    props.cursorColor,
+    props.lineColor,
+  ]);
 
   return (
     <canvas width={props.width} height={props.height} ref={canvasRef}></canvas>

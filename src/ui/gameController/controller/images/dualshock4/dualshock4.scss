@@ -1,4 +1,4 @@
-.dualshock4 {
+.dualshock4 .controller-layout {
   position: relative;
 
   .controller-buttons {
@@ -118,5 +118,41 @@
 
   .button-start {
     right: 27.55%;
+  }
+
+  .button-l1,
+  .button-r1 {
+    width: 13%;
+  }
+
+  .button-l2,
+  .button-r2 {
+    width: 12%;
+  }
+
+  .button-l1,
+  .button-r1 {
+    top: 30%;
+  }
+
+  .button-l2,
+  .button-r2 {
+    bottom: 4%;
+  }
+
+  .button-l1 {
+    left: 9.2%;
+  }
+
+  .button-l2 {
+    left: 10.5%;
+  }
+
+  .button-r1 {
+    right: 9.2%;
+  }
+
+  .button-r2 {
+    right: 10.5%;
   }
 }

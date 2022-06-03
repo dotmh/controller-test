@@ -22,6 +22,8 @@ import {
   X,
 } from './top';
 
+import {Background as AltBackground, L1, L2, R1, R2} from './alt';
+
 export const dualshock4ImageMap: ImageMap = new Map();
 
 dualshock4ImageMap.set(Buttons.A, Circle);
@@ -43,3 +45,9 @@ dualshock4ImageMap.set(DPad.RIGHT, Right);
 
 dualshock4ImageMap.set('BACKGROUND_TOP', Background);
 dualshock4ImageMap.set('ICON', Icon);
+
+dualshock4ImageMap.set('BACKGROUND_ALT', AltBackground);
+dualshock4ImageMap.set(Triggers.L1, L1);
+dualshock4ImageMap.set(Triggers.L2, L2);
+dualshock4ImageMap.set(Triggers.R1, R1);
+dualshock4ImageMap.set(Triggers.R2, R2);

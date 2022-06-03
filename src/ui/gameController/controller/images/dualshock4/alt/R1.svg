@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="178px" height="98px" viewBox="0 0 178 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>R1</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="DualShock-4-rear" transform="translate(-1161.000000, -303.000000)" stroke="#FF0000">
+            <g id="rear" transform="translate(176.000000, 177.605118)">
+                <path d="M991.5,216.894882 C1060.12711,224.269478 1094.86829,224.269478 1162.5,216.894882 C1162.5,205.785995 1162.5,197.360394 1162.5,191.618078 C1158.66178,165.590252 1144.51049,146.607955 1120.04614,134.671188 C1098.38647,124.102894 1054.66307,123.996458 1030.56702,134.671188 C1003.78234,146.536998 988.998283,165.519294 986.214844,191.618078 C986.214844,202.783734 987.976562,211.209335 991.5,216.894882 Z" id="R1" transform="translate(1074.357422, 174.565416) scale(-1, 1) translate(-1074.357422, -174.565416) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

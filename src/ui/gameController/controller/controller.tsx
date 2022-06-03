@@ -15,8 +15,9 @@ import {ControllerAxis} from './controllerAxis';
 import {ControllerButton} from './controllerButton';
 import {controllerImage} from './images';
 
+export type View = 'TOP' | 'ALT';
 export type ViewButtonSet = Set<ControllerButtons>;
-export type ViewMap = Map<'REAR' | 'TOP', ViewButtonSet>;
+export type ViewMap = Map<View, ViewButtonSet>;
 
 interface ControllerProps {
   gamepad: Gamepad;
@@ -42,7 +43,7 @@ export const GameController = (props: ControllerProps) => {
     Buttons.Y,
   ]);
 
-  const rearButtonSet: ViewButtonSet = new Set([
+  const altButtonSet: ViewButtonSet = new Set([
     Triggers.L1,
     Triggers.L2,
     Triggers.R1,
@@ -50,7 +51,7 @@ export const GameController = (props: ControllerProps) => {
   ]);
 
   viewMap.set('TOP', topButtonSet);
-  viewMap.set('REAR', rearButtonSet);
+  viewMap.set('ALT', altButtonSet);
 
   useEffect(() => {
     const interval: number = pollGamePad(
@@ -68,10 +69,30 @@ export const GameController = (props: ControllerProps) => {
   }
 
   return (
-    <div className="controller">
+    <div className={`controller ${controller.type.toLowerCase()}`}>
       <h1>Controller : {controller?.id.name}</h1>
+
+      <div className="controller-alt">
+        <div className="controller-layout">
+          <>{controllerImage(controller.type, 'BACKGROUND_ALT')}</>
+          <div className="controller-buttons">
+            {[...(viewMap.get('ALT') ?? [])].map((button, index) => {
+              return (
+                <ControllerButton
+                  key={index}
+                  button={button}
+                  pressed={controller.buttons.get(button)?.pressed ?? false}
+                  value={controller.buttons.get(button)?.value ?? 0}
+                  image={controllerImage(controller?.type, button)}
+                ></ControllerButton>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       <div className="controller-top">
-        <div className={`controller-layout ${controller.type.toLowerCase()}`}>
+        <div className="controller-layout">
           <>{controllerImage(controller.type, 'BACKGROUND_TOP')}</>
           <div className="controller-buttons">
             {[...(viewMap.get('TOP') ?? [])].map((button, index) => {

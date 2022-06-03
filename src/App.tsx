@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {Container, Navbar, NavbarBrand} from 'reactstrap';
 import './App.scss';
-import {ControllerCanIUse} from './ui/controller/canUse';
-import {GameController} from './ui/controller/controller/controller';
-import {ControllerSelector} from './ui/controller/selector';
+import {ControllerCanIUse} from './ui/gameController/canUse';
+import {GameController} from './ui/gameController/controller/controller';
+import {ControllerSelector} from './ui/gameController/selector';
 import {ThemeContext, Themes, ThemeSelector} from './ui/themeSelector';
 
 function App() {

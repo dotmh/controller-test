@@ -16,7 +16,7 @@ import {
   listGamepads,
   watchForGamepad,
   watchForGamepadDisconnect,
-} from '../../lib/controller';
+} from '../../lib/gameController';
 
 export interface ControllerSelecterProps {
   onSelectGamepad: (gamePad: Gamepad | null) => void;

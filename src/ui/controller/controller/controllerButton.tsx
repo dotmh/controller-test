@@ -1,7 +1,7 @@
 import './controllerButton.scss';
 
 import React from 'react';
-import {ControllerButtons} from '../../../lib/controller';
+import {ControllerButtons} from '../../../lib/gameController';
 
 export interface ControllerButtonProps {
   button: ControllerButtons | null | undefined;

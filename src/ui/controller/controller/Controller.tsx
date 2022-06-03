@@ -10,7 +10,7 @@ import {
   DPad,
   pollGamePad,
   Triggers,
-} from '../../../lib/controller';
+} from '../../../lib/gameController';
 import {ControllerAxis} from './controllerAxis';
 import {ControllerButton} from './controllerButton';
 import {controllerImage} from './images';

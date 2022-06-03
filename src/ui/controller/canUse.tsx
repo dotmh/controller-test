@@ -1,6 +1,9 @@
 import React from 'react';
 import {Alert} from 'reactstrap';
-import {canUseGamepadApi, canUseGamepadApiEvents} from '../../lib/controller';
+import {
+  canUseGamepadApi,
+  canUseGamepadApiEvents,
+} from '../../lib/gameController';
 
 interface ControllerCanIUseProps {
   children: React.ReactNode;

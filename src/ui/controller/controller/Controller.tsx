@@ -4,17 +4,24 @@ import React, {useEffect, useState} from 'react';
 import {
   Axis,
   axisId,
+  Buttons,
   ControllerButtons,
   ControllerMapping,
   ControllerTypes,
+  Controls,
+  DPad,
   gamepadId,
   gamepadType,
   mappings,
   pollGamePad,
+  Triggers,
 } from '../../../lib/controller';
 import {ControllerAxis} from './controllerAxis';
 import {ControllerButton} from './controllerButton';
 import {controllerImage} from './images';
+
+export type ViewButtonSet = Set<ControllerButtons>;
+export type ViewMap = Map<'REAR' | 'TOP', ViewButtonSet>;
 
 interface ControllerProps {
   gamepad: Gamepad;
@@ -30,6 +37,33 @@ export const Controller = (props: ControllerProps) => {
   const [useGamepadType, setUseGamepadType] = useState<ControllerTypes>(
     ControllerTypes.UNKNOWN
   );
+
+  const viewMap: ViewMap = new Map();
+  const topButtonSet: ViewButtonSet = new Set([
+    DPad.UP,
+    DPad.DOWN,
+    DPad.LEFT,
+    DPad.RIGHT,
+    Triggers.R3,
+    Triggers.L3,
+    Controls.HOME,
+    Controls.SELECT,
+    Controls.START,
+    Buttons.A,
+    Buttons.B,
+    Buttons.X,
+    Buttons.Y,
+  ]);
+
+  const rearButtonSet: ViewButtonSet = new Set([
+    Triggers.L1,
+    Triggers.L2,
+    Triggers.R1,
+    Triggers.R2,
+  ]);
+
+  viewMap.set('TOP', topButtonSet);
+  viewMap.set('REAR', rearButtonSet);
 
   useEffect(() => {
     const interval: number = pollGamePad(props.gamepad, (gamepad: Gamepad) => {

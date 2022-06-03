@@ -1,28 +1,31 @@
 import './controllerAxis.scss';
 
 import React from 'react';
-import {axisInPercent} from '../../../lib/controller';
 import {AxisGraph} from '../axis';
 
 export interface ControllerAxisProps {
-  x: number;
-  y: number;
+  x: number | undefined;
+  y: number | undefined;
   label: 'left' | 'right';
   divider?: string;
 }
 
 export const ControllerAxis = (props: ControllerAxisProps) => {
+  if (props.x === undefined || props.y === undefined) {
+    return <></>;
+  }
+
   return (
     <div className="controller-axis">
       <h2>{props.label}</h2>
       <div className="cords">
-        {axisInPercent(props.x)} {props.divider ?? '/'} {axisInPercent(props.y)}
+        {props.x} {props.divider ?? ','} {props.y}
       </div>
       <AxisGraph
         width={200}
         height={200}
-        xPercentage={axisInPercent(props.x)}
-        yPercentage={axisInPercent(props.y)}
+        xPercentage={props.x}
+        yPercentage={props.y}
       ></AxisGraph>
     </div>
   );

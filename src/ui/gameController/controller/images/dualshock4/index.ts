@@ -1,4 +1,9 @@
-import {Buttons, Controls, DPad, Triggers} from '../../../../../lib/controller';
+import {
+  Buttons,
+  Controls,
+  DPad,
+  Triggers,
+} from '../../../../../lib/gameController';
 import {ImageMap} from '..';
 import {
   Background,

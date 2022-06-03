@@ -1,7 +1,7 @@
 import './dualshock4/dualshock4.scss';
 
 import {ExoticComponent, Fragment} from 'react';
-import {ContollerInputs, ControllerTypes} from '../../../../lib/controller';
+import {ContollerInputs, ControllerTypes} from '../../../../lib/gameController';
 import {SVG} from '../../../../lib/types';
 import {dualshock4ImageMap} from './dualshock4';
 

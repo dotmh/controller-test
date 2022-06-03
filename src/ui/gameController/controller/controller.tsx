@@ -70,36 +70,36 @@ export const GameController = (props: ControllerProps) => {
   return (
     <div className="controller">
       <h1>Controller : {controller?.id.name}</h1>
-      <div className={`controller-layout ${controller.type.toLowerCase()}`}>
-        <>{controllerImage(controller.type, 'BACKGROUND_TOP')}</>
-        <div className="controller-buttons">
-          {[...(controller.buttons?.entries() ?? [])].map(
-            ([button, buttonData], index) => {
+      <div className="controller-top">
+        <div className={`controller-layout ${controller.type.toLowerCase()}`}>
+          <>{controllerImage(controller.type, 'BACKGROUND_TOP')}</>
+          <div className="controller-buttons">
+            {[...(viewMap.get('TOP') ?? [])].map((button, index) => {
               return (
                 <ControllerButton
                   key={index}
                   button={button}
-                  pressed={buttonData.pressed}
-                  value={buttonData.value}
+                  pressed={controller.buttons.get(button)?.pressed ?? false}
+                  value={controller.buttons.get(button)?.value ?? 0}
                   image={controllerImage(controller?.type, button)}
                 ></ControllerButton>
               );
-            }
-          )}
+            })}
+          </div>
         </div>
-      </div>
-      <div className="controller-axises">
-        <ControllerAxis
-          label="left"
-          x={controller.axisPercentage.get(Axis.LX)}
-          y={controller.axisPercentage.get(Axis.LY)}
-        ></ControllerAxis>
+        <div className="controller-axises">
+          <ControllerAxis
+            label="left"
+            x={controller.axisPercentage.get(Axis.LX)}
+            y={controller.axisPercentage.get(Axis.LY)}
+          ></ControllerAxis>
 
-        <ControllerAxis
-          label="right"
-          x={controller.axisPercentage.get(Axis.RX)}
-          y={controller.axisPercentage.get(Axis.RY)}
-        ></ControllerAxis>
+          <ControllerAxis
+            label="right"
+            x={controller.axisPercentage.get(Axis.RX)}
+            y={controller.axisPercentage.get(Axis.RY)}
+          ></ControllerAxis>
+        </div>
       </div>
     </div>
   );

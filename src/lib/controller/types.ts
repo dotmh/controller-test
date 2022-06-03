@@ -53,3 +53,13 @@ export interface GamepadId {
 }
 
 export type EventCallback = () => void;
+
+export type ButtonMap = Map<ControllerButtons, GamepadButton>;
+export type AxisMap = Map<Axis, number>;
+export interface Controller {
+  id: GamepadId;
+  buttons: ButtonMap;
+  type: ControllerTypes;
+  axis: AxisMap;
+  axisPercentage: AxisMap;
+}

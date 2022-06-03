@@ -4,8 +4,17 @@ import {
   GAMEPAD_DISCONNECTED,
   GAMEPAD_ID_SEPERATOR,
 } from './constants';
-import {idMapping, STANDARD_MAPPING} from './mapping';
-import {Axis, ControllerTypes, EventCallback, GamepadId} from './types';
+import {idMapping, mappings, STANDARD_MAPPING} from './mapping';
+import {
+  Axis,
+  AxisMap,
+  ButtonMap,
+  Controller,
+  ControllerButtons,
+  ControllerTypes,
+  EventCallback,
+  GamepadId,
+} from './types';
 
 export const asAxis = (axisId: number): number => AXIS_OFFSET + axisId;
 
@@ -77,15 +86,63 @@ export const getGamepad = (selectId: string): Gamepad | null => {
   return listGamepads().find(({id}) => id === selectId) ?? null;
 };
 
+export const buttonMap = (
+  buttons: readonly GamepadButton[],
+  mapping: GamepadMappingType = 'standard'
+): ButtonMap => {
+  const buttonMap: ButtonMap = new Map();
+  buttons.forEach((button: GamepadButton, index: number) => {
+    const buttonMapping = mappings.get(mapping)?.get(index);
+    if (buttonMapping) {
+      buttonMap.set(buttonMapping as ControllerButtons, button);
+    }
+  });
+  return buttonMap;
+};
+
+export const axisMap = (
+  axis: readonly number[],
+  mapping: GamepadMappingType = 'standard'
+): {axisMap: AxisMap; axisPercentageMap: AxisMap} => {
+  const axisMap: AxisMap = new Map();
+  const axisPercentageMap: AxisMap = new Map();
+
+  axis.forEach((axis: number, index: number) => {
+    const axisMapping = mappings.get(mapping)?.get(asAxis(index));
+    if (axisMapping) {
+      axisMap.set(axisMapping as Axis, axis);
+      axisPercentageMap.set(axisMapping as Axis, axisInPercent(axis));
+    }
+  });
+  return {axisMap, axisPercentageMap};
+};
+
+export const convertGamepadToController = (gamepad: Gamepad): Controller => {
+  const id = gamepadId(gamepad.id);
+  const buttons = buttonMap(gamepad.buttons, gamepad.mapping);
+  const type = gamepadType(gamepad.id);
+  const {axisMap: axis, axisPercentageMap: axisPercentage} = axisMap(
+    gamepad.axes,
+    gamepad.mapping
+  );
+  return {
+    id,
+    buttons,
+    type,
+    axis,
+    axisPercentage,
+  };
+};
+
 export const pollGamePad = (
   gamepad: Gamepad,
-  pollCallback: (gamepad: Gamepad) => void,
+  pollCallback: (controller: Controller) => void,
   fps = 60
 ): number => {
   return setInterval(() => {
     const gamepadData = getGamepad(gamepad.id);
     if (gamepadData) {
-      pollCallback(gamepadData);
+      pollCallback(convertGamepadToController(gamepad));
     }
   }, 1000 / fps);
 };

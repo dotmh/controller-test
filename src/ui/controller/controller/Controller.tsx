@@ -3,16 +3,11 @@ import './controller.scss';
 import React, {useEffect, useState} from 'react';
 import {
   Axis,
-  axisId,
   Buttons,
+  Controller,
   ControllerButtons,
-  ControllerMapping,
-  ControllerTypes,
   Controls,
   DPad,
-  gamepadId,
-  gamepadType,
-  mappings,
   pollGamePad,
   Triggers,
 } from '../../../lib/controller';
@@ -27,16 +22,8 @@ interface ControllerProps {
   gamepad: Gamepad;
 }
 
-export const Controller = (props: ControllerProps) => {
-  const [buttons, setButtons] = useState<readonly GamepadButton[] | null>(null);
-  const [mapping, setMapping] = useState<ControllerMapping | null | undefined>(
-    null
-  );
-  const [id, setId] = useState<string>('');
-  const [axis, setAxis] = useState<readonly number[]>([]);
-  const [useGamepadType, setUseGamepadType] = useState<ControllerTypes>(
-    ControllerTypes.UNKNOWN
-  );
+export const GameController = (props: ControllerProps) => {
+  const [controller, setController] = useState<Controller | null>(null);
 
   const viewMap: ViewMap = new Map();
   const topButtonSet: ViewButtonSet = new Set([
@@ -66,55 +53,52 @@ export const Controller = (props: ControllerProps) => {
   viewMap.set('REAR', rearButtonSet);
 
   useEffect(() => {
-    const interval: number = pollGamePad(props.gamepad, (gamepad: Gamepad) => {
-      setButtons([...gamepad.buttons] ?? null);
-      setMapping(
-        mappings.has(gamepad.mapping)
-          ? mappings.get(gamepad.mapping)
-          : mappings.get('standard')
-      );
-      setId(gamepad.id);
-      setAxis([...gamepad.axes]);
-      setUseGamepadType(gamepadType(gamepad.id));
-    });
+    const interval: number = pollGamePad(
+      props.gamepad,
+      (controllerData: Controller) => {
+        setController({...controllerData});
+      }
+    );
 
     return () => clearInterval(interval);
   }, []);
 
+  if (!controller) {
+    return <></>;
+  }
+
   return (
     <div className="controller">
-      <h1>Controller : {gamepadId(id).name}</h1>
-      <div className={`controller-layout ${useGamepadType.toLowerCase()}`}>
-        <>{controllerImage(useGamepadType, 'BACKGROUND_TOP')}</>
+      <h1>Controller : {controller?.id.name}</h1>
+      <div className={`controller-layout ${controller.type.toLowerCase()}`}>
+        <>{controllerImage(controller.type, 'BACKGROUND_TOP')}</>
         <div className="controller-buttons">
-          {buttons?.map((button, index) => {
-            const controllerButton: ControllerButtons | null =
-              mapping && mapping.has(index)
-                ? (mapping.get(index) as ControllerButtons)
-                : null;
-            return (
-              <ControllerButton
-                key={index}
-                button={controllerButton}
-                pressed={button.pressed}
-                value={button.value}
-                image={controllerImage(useGamepadType, controllerButton)}
-              ></ControllerButton>
-            );
-          })}
+          {[...(controller.buttons?.entries() ?? [])].map(
+            ([button, buttonData], index) => {
+              return (
+                <ControllerButton
+                  key={index}
+                  button={button}
+                  pressed={buttonData.pressed}
+                  value={buttonData.value}
+                  image={controllerImage(controller?.type, button)}
+                ></ControllerButton>
+              );
+            }
+          )}
         </div>
       </div>
       <div className="controller-axises">
         <ControllerAxis
           label="left"
-          x={axis[axisId(Axis.LX)]}
-          y={axis[axisId(Axis.LY)]}
+          x={controller.axisPercentage.get(Axis.LX)}
+          y={controller.axisPercentage.get(Axis.LY)}
         ></ControllerAxis>
 
         <ControllerAxis
           label="right"
-          x={axis[axisId(Axis.RX)]}
-          y={axis[axisId(Axis.RY)]}
+          x={controller.axisPercentage.get(Axis.RX)}
+          y={controller.axisPercentage.get(Axis.RY)}
         ></ControllerAxis>
       </div>
     </div>
